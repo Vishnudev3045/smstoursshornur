@@ -1,0 +1,4 @@
+# Netlify Serverless API & SPA Redirects
+/api/data   /.netlify/functions/api   200
+/api/save   /.netlify/functions/api   200
+/*          /index.html               200

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMS Tours & Travels Shoranur | Wanderly Dynamic Portal</title>
+  <meta name="description" content="Discover inspiring destinations with SMS Tours & Travels Shoranur. International & Domestic curated tour packages: Dubai, Thailand, Kashmir, Wayanad, Kanthalloor, and South India pilgrimages.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
+  <!-- Google Fonts: Outfit (Geometric Display) & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Outfit"', '"Plus Jakarta Sans"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
+            serif: ['"Outfit"', '"Plus Jakarta Sans"', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              forest: '#183329',
+              dark: '#07162c',
+              navy: '#0c1b33',
+              accent: '#00b4d8',
+              warm: '#faf8f5'
+            }
+          },
+          borderRadius: {
+            '2.5xl': '1.35rem',
+            '3xl': '1.75rem',
+            '4xl': '2.5rem'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css?v=4.0">
+</head>
+<body class="bg-white text-slate-900 antialiased selection:bg-blue-600 selection:text-white">
+
+  <!-- TOP NAVIGATION BAR (Crisp White Frosted Header) -->
+  <header id="main-header" class="w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300 header-blended">
+    <div id="header-container" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5 transition-all duration-300 flex items-center justify-between">
+      
+      <!-- Official Brand Logo: SMS Tours & Travels -->
+      <a href="#/" class="flex items-center group py-0.5" title="SMS Tours & Travels Shoranur">
+        <img src="assets/logo.png" alt="SMS Tours & Travels Shoranur" class="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105 header-brand-logo">
+      </a>
+
+      <!-- Center Navigation Links: Dynamic Page Routes -->
+      <nav id="main-nav" class="hidden lg:flex items-center gap-7 text-[14.5px] font-medium transition-colors">
+        <a href="#/" class="header-nav-link active" data-route="home">Home</a>
+
+        <!-- Tour Packages Dropdown -->
+        <div class="relative group py-2">
+          <a href="#/packages" class="header-nav-link flex items-center gap-1" data-route="packages">
+            <span>Tour Packages</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform group-hover:rotate-180"></i>
+          </a>
+          <div class="absolute top-full left-0 w-56 py-2 bg-white rounded-2xl shadow-xl border border-slate-200/80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <a href="#/packages" class="block px-4 py-2 text-xs font-bold text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition">All Tour Packages</a>
+            <div class="h-px bg-slate-100 my-1"></div>
+            <a href="#/category/international" class="block px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-600 transition">International Tours</a>
+            <a href="#/category/domestic" class="block px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-600 transition">Domestic Tours</a>
+            <a href="#/category/day-trip" class="block px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-600 transition">Local Day Trips</a>
+          </div>
+        </div>
+
+        <a href="#/gallery" class="header-nav-link" data-route="gallery">Gallery</a>
+        <a href="#/blog" class="header-nav-link" data-route="blog">Blog</a>
+        <a href="#/about" class="header-nav-link" data-route="about">About Us</a>
+      </nav>
+
+      <!-- Right Action Items -->
+      <div class="flex items-center gap-2 sm:gap-4">
+        <button id="header-wishlist-btn" onclick="toggleWishlistModal()" class="flex items-center gap-1.5 p-1.5 sm:px-2.5 sm:py-1.5 rounded-full text-sm font-semibold transition cursor-pointer text-slate-700 hover:text-blue-600 hover:bg-slate-100" title="Saved Trips">
+          <i data-lucide="heart" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">Saved</span>
+          <span id="saved-counter" class="w-5 h-5 rounded-full font-bold text-[11px] flex items-center justify-center border transition bg-blue-50 text-blue-600 border-blue-200">0</span>
+        </button>
+
+        <a href="#/contact" id="header-contact-btn" class="inline-flex items-center justify-center px-3.5 sm:px-6 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-blue-600 to-sky-500 hover:from-blue-700 hover:to-sky-600 text-white font-bold text-xs sm:text-sm transition-all shadow-md shadow-blue-500/25 cursor-pointer shrink-0">
+          Contact
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl transition cursor-pointer text-slate-800 hover:text-blue-600 hover:bg-slate-100" aria-label="Toggle navigation">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown Navigation Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden px-4 sm:px-6 py-4 bg-white/98 backdrop-blur-xl border-b border-slate-200/90 space-y-2.5 text-sm font-semibold text-slate-800 shadow-2xl transition-all duration-300">
+      <!-- Quick Hotline Bar -->
+      <div class="flex items-center justify-between pb-3 mb-2 border-b border-slate-100">
+        <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">SMS Tours Menu</span>
+        <a href="https://wa.me/918089427469" target="_blank" class="flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+          <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> +91 8089427469
+        </a>
+      </div>
+
+      <a href="#/" onclick="toggleMobileMenu()" class="block p-3 rounded-xl hover:bg-blue-50 hover:text-blue-600 transition flex items-center justify-between">
+        <span>Home</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+      </a>
+      
+      <!-- Tour Packages Group -->
+      <div class="p-3 rounded-xl bg-slate-50/80 border border-slate-100 space-y-2">
+        <a href="#/packages" onclick="toggleMobileMenu()" class="block font-bold text-slate-900 hover:text-blue-600 transition flex items-center justify-between">
+          <span>All Tour Packages</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-blue-600"></i>
+        </a>
+        <div class="grid grid-cols-3 gap-1.5 pt-1">
+          <a href="#/category/international" onclick="toggleMobileMenu()" class="text-[11px] py-1.5 px-2 rounded-lg bg-white hover:bg-blue-100 text-slate-700 hover:text-blue-700 transition font-semibold text-center border border-slate-200/60 shadow-2xs">International</a>
+          <a href="#/category/domestic" onclick="toggleMobileMenu()" class="text-[11px] py-1.5 px-2 rounded-lg bg-white hover:bg-blue-100 text-slate-700 hover:text-blue-700 transition font-semibold text-center border border-slate-200/60 shadow-2xs">Domestic</a>
+          <a href="#/category/day-trip" onclick="toggleMobileMenu()" class="text-[11px] py-1.5 px-2 rounded-lg bg-white hover:bg-blue-100 text-slate-700 hover:text-blue-700 transition font-semibold text-center border border-slate-200/60 shadow-2xs">Day Trips</a>
+        </div>
+      </div>
+
+      <a href="#/gallery" onclick="toggleMobileMenu()" class="block p-3 rounded-xl hover:bg-blue-50 hover:text-blue-600 transition flex items-center justify-between">
+        <span>Photo Gallery</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+      </a>
+      <a href="#/blog" onclick="toggleMobileMenu()" class="block p-3 rounded-xl hover:bg-blue-50 hover:text-blue-600 transition flex items-center justify-between">
+        <span>Travel Stories & Blog</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+      </a>
+      <a href="#/about" onclick="toggleMobileMenu()" class="block p-3 rounded-xl hover:bg-blue-50 hover:text-blue-600 transition flex items-center justify-between">
+        <span>About Us</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+      </a>
+
+      <div class="pt-2 space-y-2">
+        <a href="#/contact" onclick="toggleMobileMenu()" class="block p-3 rounded-xl bg-gradient-to-r from-blue-600 to-sky-500 text-white font-bold text-center shadow-lg shadow-blue-500/25">
+          Contact Shoranur Office
+        </a>
+        <div class="pt-1 flex items-center justify-between text-xs text-slate-400 px-1 border-t border-slate-100">
+          <a href="#/admin" onclick="toggleMobileMenu()" class="hover:text-blue-600 transition flex items-center gap-1.5 font-semibold text-slate-500">
+            <i data-lucide="lock" class="w-3.5 h-3.5"></i> Admin Portal
+          </a>
+          <span class="text-[10px] text-slate-400">Netlify Ready • v5.2</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- DYNAMIC ROUTER ROOT CONTAINER (Supports full-screen hero & modules) -->
+  <main id="app-root" class="w-full min-h-[calc(100vh-140px)]">
+    <!-- Injected dynamically by js/app.js according to window.location.hash -->
+  </main>
+
+  <!-- COMPACT STREAMLINED FOOTER -->
+  <footer class="w-full bg-[#091e3a] text-slate-300 border-t border-blue-900/60 pt-8 sm:pt-10 pb-6 sm:pb-8 mt-12 sm:mt-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
+      
+      <!-- Main Columns Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-5">
+        
+        <!-- Col 1: Brand Info & Socials -->
+        <div class="space-y-3 lg:col-span-2">
+          <div class="flex items-center gap-2.5">
+            <img src="assets/logo.png" alt="SMS Tours & Travels" class="h-9 sm:h-10 w-auto object-contain bg-white rounded-lg p-1 shadow-sm">
+            <div>
+              <span class="font-bold text-base sm:text-lg text-white tracking-tight block leading-tight">SMS Tours & Travels</span>
+              <span class="text-[10px] uppercase tracking-wider text-sky-400 font-semibold">Ultimate Travel Solutions • Shoranur</span>
+            </div>
+          </div>
+          <p class="text-[11px] sm:text-xs text-slate-400 leading-relaxed max-w-sm">
+            Shoranur's premier travel agency delivering curated international holidays, domestic expeditions, pilgrimage yatras, and tailored group tours since 2009.
+          </p>
+          <div class="flex items-center gap-2 pt-0.5">
+            <a href="https://www.facebook.com/profile.php?id=100084277005342" target="_blank" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-blue-600 hover:text-white text-white flex items-center justify-center transition shadow-xs" title="Facebook" aria-label="Facebook">
+              <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/sms_tours/" target="_blank" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-pink-600 hover:text-white text-white flex items-center justify-center transition shadow-xs" title="Instagram" aria-label="Instagram">
+              <svg class="w-4 h-4 fill-currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Navigation -->
+        <div class="space-y-2.5">
+          <h4 class="font-bold text-white text-[11px] uppercase tracking-wider border-b border-blue-900/80 pb-1.5">Navigation</h4>
+          <ul class="space-y-1.5 text-[11px] sm:text-xs text-slate-300">
+            <li><a href="#/" class="hover:text-sky-400 transition flex items-center gap-1.5"><i data-lucide="chevron-right" class="w-3 h-3 text-sky-400"></i> Home</a></li>
+            <li><a href="#/packages" class="hover:text-sky-400 transition flex items-center gap-1.5"><i data-lucide="chevron-right" class="w-3 h-3 text-sky-400"></i> All Packages</a></li>
+            <li><a href="#/category/international" class="hover:text-sky-400 transition flex items-center gap-1.5"><i data-lucide="chevron-right" class="w-3 h-3 text-sky-400"></i> International</a></li>
+            <li><a href="#/category/domestic" class="hover:text-sky-400 transition flex items-center gap-1.5"><i data-lucide="chevron-right" class="w-3 h-3 text-sky-400"></i> Domestic</a></li>
+            <li><a href="#/gallery" class="hover:text-sky-400 transition flex items-center gap-1.5"><i data-lucide="chevron-right" class="w-3 h-3 text-sky-400"></i> Gallery</a></li>
+            <li><a href="#/about" class="hover:text-sky-400 transition flex items-center gap-1.5"><i data-lucide="chevron-right" class="w-3 h-3 text-sky-400"></i> About Us</a></li>
+            <li><a href="#/contact" class="hover:text-sky-400 transition flex items-center gap-1.5"><i data-lucide="chevron-right" class="w-3 h-3 text-sky-400"></i> Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Popular Packages -->
+        <div class="space-y-2.5">
+          <h4 class="font-bold text-white text-[11px] uppercase tracking-wider border-b border-blue-900/80 pb-1.5">Top Tours</h4>
+          <ul class="space-y-1.5 text-[11px] sm:text-xs text-slate-300">
+            <li><a href="#/package/dubai" class="hover:text-sky-400 transition flex items-center gap-1.5"><i data-lucide="plane" class="w-3 h-3 text-sky-400"></i> Dubai UAE</a></li>
+            <li><a href="#/package/bangkok-tour" class="hover:text-sky-400 transition flex items-center gap-1.5"><i data-lucide="plane" class="w-3 h-3 text-sky-400"></i> Bangkok & Thailand</a></li>
+            <li><a href="#/package/kashmir-yathra" class="hover:text-sky-400 transition flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3 h-3 text-sky-400"></i> Kashmir Yathra</a></li>
+            <li><a href="#/package/hyderabad-tour" class="hover:text-sky-400 transition flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3 h-3 text-sky-400"></i> Hyderabad & Ramoji</a></li>
+            <li><a href="#/package/wayanad-tour" class="hover:text-sky-400 transition flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3 h-3 text-sky-400"></i> Wayanad Hills</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact, Address & WhatsApp -->
+        <div class="space-y-2.5">
+          <h4 class="font-bold text-white text-[11px] uppercase tracking-wider border-b border-blue-900/80 pb-1.5">Shoranur Office</h4>
+          <div class="space-y-2 text-[11px] sm:text-xs text-slate-300">
+            <p class="leading-snug text-slate-400">
+              <strong class="text-white">S.K. Building</strong>, Opp. Municipal Office, Shoranur, Palakkad - 679 121
+            </p>
+            <div class="space-y-1 pt-0.5">
+              <a href="tel:+918089427469" class="hover:text-sky-400 transition flex items-center gap-1.5 text-white font-medium">
+                <i data-lucide="phone-call" class="w-3 h-3 text-sky-400"></i>
+                <span>+91 8089427469</span>
+              </a>
+              <a href="tel:+919847042870" class="hover:text-sky-400 transition flex items-center gap-1.5 text-slate-400">
+                <i data-lucide="phone" class="w-3 h-3 text-slate-500"></i>
+                <span>+91 9847042870</span>
+              </a>
+            </div>
+            <div class="pt-1">
+              <a href="https://wa.me/918089427469?text=Hello%20SMS%20Tours,%20I%20would%20like%20to%20inquire%20about%20a%20tour%20package." target="_blank" class="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-lg bg-gradient-to-r from-blue-600 to-sky-500 hover:from-blue-700 hover:to-sky-600 text-white font-bold text-[11px] transition shadow-sm">
+                <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> WhatsApp Booking
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Trust Badges & Partner Strip -->
+      <div class="pt-5 border-t border-blue-900/60 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-center">
+        <div>
+          <p class="text-base sm:text-lg font-extrabold text-white">100+ Trips</p>
+          <p class="text-[10px] text-slate-400">Worldwide Tours</p>
+        </div>
+        <div>
+          <p class="text-base sm:text-lg font-extrabold text-sky-400">15,000+</p>
+          <p class="text-[10px] text-slate-400">Happy Travelers</p>
+        </div>
+        <div>
+          <p class="text-base sm:text-lg font-extrabold text-white">15+ Years</p>
+          <p class="text-[10px] text-slate-400">Experience</p>
+        </div>
+        <div>
+          <p class="text-base sm:text-lg font-extrabold text-sky-400">100%</p>
+          <p class="text-[10px] text-slate-400">Assisted Booking</p>
+        </div>
+      </div>
+
+      <!-- Bottom Copyright & Credits Strip -->
+      <div class="pt-4 border-t border-blue-900/60 text-[10px] sm:text-[11px] text-slate-400 flex flex-col md:flex-row justify-between items-center gap-2">
+        <div class="flex items-center gap-3">
+          <span>© 2026 SMS Tours & Travels Shoranur. All Rights Reserved.</span>
+          <span>•</span>
+          <a href="#/admin" class="text-sky-400 hover:text-white transition flex items-center gap-1 font-semibold" title="Staff Management Portal">
+            <i data-lucide="lock" class="w-3 h-3"></i> Admin Portal
+          </a>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2 text-slate-400">
+          <span>Kerala Tourism • IRCTC Tourism • Emirates • Air India Express</span>
+          <span class="hidden sm:inline">•</span>
+          <span>Powered By <strong class="text-slate-300 font-medium">Extra Logic Tech Solutionz</strong></span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- 3-STEP INTERACTIVE BOOKING MODAL -->
+  <div id="booking-modal" class="modal-backdrop custom-scroll">
+    <div class="modal-content-box p-4 sm:p-7 md:p-10 relative max-w-2xl rounded-2.5xl sm:rounded-3xl max-h-[92vh]">
+      <button onclick="closeBookingModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition z-20">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="space-y-5 sm:space-y-6">
+        <div class="border-b border-slate-100 pb-4 flex items-center justify-between gap-4 pr-10 sm:pr-0">
+          <div>
+            <div class="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200/60 text-[11px] sm:text-xs font-bold uppercase mb-1.5">
+              Online Reservation
+            </div>
+            <h3 class="text-xl sm:text-3xl font-extrabold text-slate-900 leading-tight">Book Your Tour</h3>
+            <p class="text-slate-500 text-xs sm:text-sm mt-0.5">Submit your preferences to receive instant confirmation & quotes directly from SMS Tours Shoranur.</p>
+          </div>
+          <img src="assets/logo.png" alt="SMS Tours & Travels" class="hidden sm:block h-12 w-auto object-contain shrink-0">
+        </div>
+
+        <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="space-y-4 sm:space-y-5">
+          <div class="space-y-2.5 sm:space-y-3">
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">1. Select Destination & Package</label>
+            <select id="book-package-select" class="w-full p-3 sm:p-3.5 bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition">
+              <option value="custom">-- Custom Itinerary / Special Request --</option>
+              <option value="dubai">Dubai Spectacular (5D/4N - ₹48,999)</option>
+              <option value="bangkok-tour">Bangkok & Pattaya Explorer (5D/4N - ₹38,500)</option>
+              <option value="kashmir-yathra">Kashmir Yathra - Heaven on Earth (6D/5N - ₹26,500)</option>
+              <option value="hyderabad-tour">Hyderabad Heritage & Ramoji (4D/3N - ₹14,500)</option>
+              <option value="thailand-tour">Phuket & Krabi Island Hopper (6D/5N - ₹42,500)</option>
+              <option value="wayanad-tour">Wayanad Misty Peaks & Waterfalls (3D/2N - ₹8,999)</option>
+              <option value="kanthalloor-tour">Kanthalloor & Marayoor Apple Orchards (3D/2N - ₹7,999)</option>
+              <option value="single-day-monsoon-trip">Parambikulam Tiger Safari (1D - ₹2,499)</option>
+              <option value="pilgrimage-tours">South India Pilgrimage Yatra (4D/3N - ₹11,500)</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Travel Date</label>
+              <input type="date" id="book-date" required class="w-full p-2.5 sm:p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition">
+            </div>
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Number of Guests</label>
+              <select id="book-guests" class="w-full p-2.5 sm:p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition">
+                <option value="1 Adult">1 Person</option>
+                <option value="2 Adults (Couple)" selected>2 Persons (Couple)</option>
+                <option value="Family (3-4 Persons)">Family (3-4 Persons)</option>
+                <option value="Group (5+ Persons)">Group (5+ Persons)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="space-y-2.5 sm:space-y-3">
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">2. Your Contact Details</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <input type="text" id="book-name" placeholder="Full Name *" required class="w-full p-2.5 sm:p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition">
+              <input type="tel" id="book-phone" placeholder="WhatsApp / Phone Number *" required class="w-full p-2.5 sm:p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition">
+            </div>
+            <input type="text" id="book-city" placeholder="Your City / Area (e.g. Shoranur, Ottapalam, Palakkad)" class="w-full p-2.5 sm:p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition">
+            <textarea id="book-notes" rows="2" placeholder="Any specific requirements (flight tickets, vegetarian meals...)" class="w-full p-2.5 sm:p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition"></textarea>
+          </div>
+
+          <div class="pt-2 sm:pt-4 flex flex-col sm:flex-row gap-2.5 sm:gap-3">
+            <button type="submit" class="w-full sm:flex-1 py-3 sm:py-3.5 px-6 rounded-xl sm:rounded-full bg-gradient-to-r from-blue-600 to-sky-500 hover:from-blue-700 hover:to-sky-600 text-white font-bold text-xs sm:text-sm transition shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2 cursor-pointer">
+              <i data-lucide="message-circle" class="w-4 h-4"></i> Dispatch via WhatsApp
+            </button>
+            <button type="button" onclick="closeBookingModal()" class="w-full sm:w-auto py-3 sm:py-3.5 px-6 rounded-xl sm:rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs sm:text-sm transition cursor-pointer text-center">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT & BRANCH INFO DRAWER -->
+  <div id="contact-drawer" class="modal-backdrop custom-scroll">
+    <div class="modal-content-box p-4 sm:p-6 md:p-8 max-w-lg relative rounded-2.5xl sm:rounded-3xl max-h-[92vh]">
+      <button onclick="toggleContactDrawer()" class="absolute top-4 right-4 sm:top-5 sm:right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="space-y-5 sm:space-y-6">
+        <div>
+          <img src="assets/logo.png" alt="SMS Tours & Travels" class="h-10 sm:h-12 w-auto object-contain mb-3 bg-white p-1 rounded-xl shadow-sm">
+          <h3 class="text-xl sm:text-2xl font-bold text-slate-900">SMS Tours & Travels</h3>
+          <p class="text-xs text-slate-500">Head Office • Shoranur, Palakkad, Kerala</p>
+        </div>
+
+        <div class="space-y-3 text-sm">
+          <div class="p-3 sm:p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
+            <span class="text-[11px] text-slate-400 font-bold uppercase">Physical Address</span>
+            <p class="font-medium text-slate-800 text-xs sm:text-sm leading-relaxed">
+              S.K. Building, Opposite Shoranur Municipal Office,<br>
+              Shoranur (PO), Palakkad (Dist), Kerala 679 121
+            </p>
+          </div>
+
+          <div class="p-3 sm:p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-2">
+            <span class="text-[11px] text-slate-400 font-bold uppercase">Direct Telephone Lines</span>
+            <div class="space-y-2 text-xs sm:text-sm">
+              <a href="tel:+918089427469" class="text-blue-600 hover:text-blue-700 font-bold block flex items-center gap-2 p-1">
+                <i data-lucide="phone" class="w-3.5 h-3.5"></i> +91 8089427469 (Primary / WhatsApp)
+              </a>
+              <a href="tel:+919847042870" class="text-slate-700 hover:text-slate-900 font-medium block flex items-center gap-2 p-1">
+                <i data-lucide="phone" class="w-3.5 h-3.5"></i> +91 9847042870 (Support)
+              </a>
+              <a href="tel:+919645006043" class="text-slate-700 hover:text-slate-900 font-medium block flex items-center gap-2 p-1">
+                <i data-lucide="phone" class="w-3.5 h-3.5"></i> +91 9645006043 (Inquiries)
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-1">
+          <a href="https://wa.me/918089427469" target="_blank" class="w-full py-3 sm:py-3.5 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-sky-500 hover:from-blue-700 hover:to-sky-600 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition shadow-lg shadow-blue-500/25">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX MODAL FOR GALLERY -->
+  <div id="lightbox-modal" class="modal-backdrop" onclick="closeLightbox(event)">
+    <div class="relative max-w-4xl w-full p-3 sm:p-4 flex flex-col items-center" onclick="event.stopPropagation()">
+      <button onclick="closeLightbox()" class="absolute -top-10 sm:-top-12 right-2 text-white hover:text-sky-400 p-2 text-xl font-bold flex items-center gap-1 transition">
+        <i data-lucide="x" class="w-6 h-6 sm:w-7 sm:h-7"></i>
+      </button>
+      <div class="rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl bg-black max-h-[80vh] flex items-center justify-center">
+        <img id="lightbox-img" src="" alt="Enlarged View" class="max-h-[75vh] w-auto object-contain">
+      </div>
+      <div id="lightbox-caption" class="text-white text-center mt-3 text-xs sm:text-sm font-medium bg-slate-900/80 px-4 py-2 rounded-full border border-white/20">
+      </div>
+    </div>
+  </div>
+
+  <!-- WISHLIST / SAVED TOURS MODAL -->
+  <div id="wishlist-modal" class="modal-backdrop custom-scroll" onclick="closeWishlistModal(event)">
+    <div class="modal-content-box p-4 sm:p-6 md:p-8 relative max-w-xl bg-white rounded-2.5xl sm:rounded-3xl shadow-2xl max-h-[92vh]" onclick="event.stopPropagation()">
+      <button onclick="closeWishlistModal()" class="absolute top-4 right-4 sm:top-5 sm:right-5 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 flex items-center justify-center transition">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="space-y-4">
+        <div class="flex items-center gap-2 pr-10 sm:pr-0">
+          <i data-lucide="heart" class="w-5 h-5 text-rose-500 fill-rose-500"></i>
+          <h3 class="font-serif text-xl sm:text-2xl font-bold text-stone-900">Your Saved Trips</h3>
+        </div>
+        <p class="text-xs sm:text-sm text-stone-500">Tours and destinations you've shortlisted for your upcoming holiday.</p>
+
+        <div id="wishlist-items-container" class="space-y-3 pt-2 max-h-72 sm:max-h-80 overflow-y-auto">
+          <!-- Injected dynamically -->
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 flex flex-col sm:flex-row gap-2.5 items-stretch sm:items-center sm:justify-between">
+          <button onclick="closeWishlistModal()" class="px-5 py-2.5 rounded-xl sm:rounded-full bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200 transition cursor-pointer text-center">
+            Continue Browsing
+          </button>
+          <button onclick="openBookingModal()" class="px-5 py-2.5 rounded-xl sm:rounded-full bg-gradient-to-r from-blue-600 to-sky-500 hover:from-blue-700 hover:to-sky-600 text-white text-xs font-bold transition shadow-md shadow-blue-500/20 cursor-pointer text-center">
+            Inquire on WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIAL DETAIL MODAL -->
+  <div id="testimonial-modal" class="modal-backdrop custom-scroll" onclick="closeTestimonialModal(event)">
+    <div class="modal-content-box p-4 sm:p-6 md:p-8 relative max-w-lg bg-white rounded-2.5xl sm:rounded-3xl shadow-2xl max-h-[92vh]" onclick="event.stopPropagation()">
+      <button onclick="closeTestimonialModal()" class="absolute top-4 right-4 sm:top-5 sm:right-5 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 flex items-center justify-center transition cursor-pointer">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+      <div id="testimonial-modal-content">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTAGRAM-STYLE TOUR STORY FULL-SCREEN MODAL -->
+  <div id="story-modal" class="modal-backdrop custom-scroll hidden" onclick="closeStoryModal(event)">
+    <div class="relative w-full max-w-sm sm:max-w-md bg-slate-950 text-white rounded-3xl overflow-hidden shadow-2xl border border-white/20 select-none animate-scale-in my-auto" onclick="event.stopPropagation()">
+      
+      <!-- Progress Bar Tracker -->
+      <div class="absolute top-3 left-3 right-3 z-30 flex items-center gap-1.5">
+        <div class="h-1 flex-1 bg-white/30 rounded-full overflow-hidden">
+          <div id="story-progress-bar" class="h-full bg-white rounded-full story-progress-fill"></div>
+        </div>
+      </div>
+
+      <!-- Top Story Header: Avatar, Name, Tag, Location & Close -->
+      <div class="absolute top-6 left-4 right-4 z-30 flex items-center justify-between text-white drop-shadow-md">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-full overflow-hidden border border-white/40 shadow-sm shrink-0">
+            <img id="story-modal-avatar" src="" alt="Avatar" class="w-full h-full object-cover">
+          </div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-1.5">
+              <span id="story-modal-name" class="text-xs font-bold text-white leading-tight truncate"></span>
+              <span id="story-modal-tag" class="text-[9px] px-1.5 py-0.5 rounded-full bg-blue-500/80 text-white font-semibold shrink-0"></span>
+            </div>
+            <h4 id="story-modal-title" class="text-xs sm:text-sm font-bold text-white leading-tight truncate"></h4>
+            <div class="flex items-center gap-2 text-[10px] text-sky-300 font-medium">
+              <span id="story-modal-location"></span>
+              <span>•</span>
+              <span id="story-modal-duration"></span>
+            </div>
+          </div>
+        </div>
+        <button onclick="closeStoryModal()" class="w-8 h-8 rounded-full bg-slate-900/60 hover:bg-slate-900 text-white flex items-center justify-center backdrop-blur-md transition cursor-pointer shrink-0">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Vertical Story Photo Container -->
+      <div class="relative aspect-[9/16] sm:aspect-[9/15] w-full overflow-hidden bg-slate-900">
+        <img id="story-modal-cover" src="" alt="Story Moment" class="w-full h-full object-cover">
+        <img id="story-modal-img" src="" alt="Story Moment" class="hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+      </div>
+
+      <!-- Bottom Story Caption Card & Actions -->
+      <div class="absolute bottom-4 left-4 right-4 z-30 space-y-3">
+        <div class="p-3.5 rounded-2xl bg-slate-900/85 backdrop-blur-md border border-white/15 space-y-1 text-xs">
+          <div class="flex items-center justify-between text-[10px] font-bold text-emerald-400">
+            <span id="story-modal-travelers"></span>
+            <span id="story-modal-rating"></span>
+          </div>
+          <p id="story-modal-quote" class="text-slate-200 italic leading-relaxed line-clamp-3 text-[11px] sm:text-xs"></p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button id="story-modal-details-btn" class="flex-1 py-3 rounded-2xl bg-white/20 hover:bg-white/30 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 backdrop-blur-md transition cursor-pointer">
+            <i data-lucide="compass" class="w-4 h-4"></i>
+            <span>View Details</span>
+          </button>
+          <button id="story-modal-wa-btn" class="flex-1 py-3 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow-lg shadow-emerald-500/25 transition transform active:scale-95 cursor-pointer">
+            <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24">
+              <path fill="white" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.63C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.04 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.16 12.04 20.16C10.66 20.16 9.3 19.81 8.1 19.14L7.81 18.97L4.69 19.79L5.52 16.75L5.33 16.45C4.6 15.28 4.21 13.93 4.21 11.91C4.21 7.37 7.91 3.67 12.04 3.67M17.47 14.39C17.18 14.24 15.75 13.54 15.48 13.44C15.22 13.34 15.03 13.29 14.84 13.58C14.65 13.87 14.09 14.53 13.92 14.72C13.75 14.92 13.58 14.94 13.29 14.8C13 14.65 12.07 14.35 10.96 13.36C10.1 12.59 9.52 11.64 9.35 11.35C9.18 11.06 9.33 10.9 9.48 10.76C9.61 10.63 9.77 10.42 9.92 10.25C10.06 10.07 10.11 9.95 10.21 9.76C10.31 9.56 10.26 9.39 10.18 9.25C10.11 9.1 9.53 7.68 9.29 7.1C9.05 6.53 8.81 6.61 8.64 6.6C8.47 6.59 8.28 6.59 8.08 6.59C7.89 6.59 7.58 6.66 7.32 6.95C7.05 7.24 6.31 7.93 6.31 9.35C6.31 10.76 7.34 12.13 7.49 12.32C7.63 12.52 9.53 15.44 12.44 16.7C13.13 17 13.67 17.18 14.09 17.32C14.78 17.54 15.41 17.51 15.91 17.43C16.47 17.35 17.62 16.73 17.86 16.06C18.1 15.38 18.1 14.8 18.03 14.68C17.96 14.56 17.76 14.49 17.47 14.39Z"/>
+            </svg>
+            <span>Book on WA</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FLOATING CIRCULAR WHATSAPP BUTTON & SMART TEASER BALLOON -->
+  <div class="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end">
+    
+    <!-- Auto-Expanding Greeting Chat Balloon (Slides in after 3 seconds) -->
+    <div id="whatsapp-teaser-balloon" class="hidden transition-all duration-500 mb-3 max-w-[280px] sm:max-w-xs p-3.5 rounded-2.5xl bg-white/95 backdrop-blur-md border border-emerald-200 shadow-2xl text-slate-800 space-y-1.5 animate-bounce-soft relative">
+      <button onclick="dismissWhatsAppTeaser(event)" aria-label="Dismiss message" class="absolute top-2 right-2 w-5 h-5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition text-[10px] cursor-pointer">
+        <i data-lucide="x" class="w-3 h-3"></i>
+      </button>
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">SMS Tours Live Desk</span>
+      </div>
+      <p class="text-xs text-slate-700 leading-snug">
+        👋 <strong>Namaskaram!</strong> Planning a trip from Shoranur? Tap here to chat directly with our tour director.
+      </p>
+    </div>
+
+    <div class="relative">
+      <a href="https://wa.me/918089427469?text=Hello%20SMS%20Tours%20Shoranur,%20I%20am%20interested%20in%20your%20tour%20packages!" target="_blank" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] hover:bg-[#20ba59] active:scale-95 text-white flex items-center justify-center shadow-[0_6px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_10px_28px_rgba(37,211,102,0.45)] transition-all duration-300 transform hover:scale-105 relative group cursor-pointer" title="WhatsApp us directly">
+        <svg class="w-8 h-8 sm:w-9 sm:h-9 fill-white" viewBox="0 0 24 24">
+          <path fill="white" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.63C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.04 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.16 12.04 20.16C10.66 20.16 9.3 19.81 8.1 19.14L7.81 18.97L4.69 19.79L5.52 16.75L5.33 16.45C4.6 15.28 4.21 13.93 4.21 11.91C4.21 7.37 7.91 3.67 12.04 3.67M17.47 14.39C17.18 14.24 15.75 13.54 15.48 13.44C15.22 13.34 15.03 13.29 14.84 13.58C14.65 13.87 14.09 14.53 13.92 14.72C13.75 14.92 13.58 14.94 13.29 14.8C13 14.65 12.07 14.35 10.96 13.36C10.1 12.59 9.52 11.64 9.35 11.35C9.18 11.06 9.33 10.9 9.48 10.76C9.61 10.63 9.77 10.42 9.92 10.25C10.06 10.07 10.11 9.95 10.21 9.76C10.31 9.56 10.26 9.39 10.18 9.25C10.11 9.1 9.53 7.68 9.29 7.1C9.05 6.53 8.81 6.61 8.64 6.6C8.47 6.59 8.28 6.59 8.08 6.59C7.89 6.59 7.58 6.66 7.32 6.95C7.05 7.24 6.31 7.93 6.31 9.35C6.31 10.76 7.34 12.13 7.49 12.32C7.63 12.52 9.53 15.44 12.44 16.7C13.13 17 13.67 17.18 14.09 17.32C14.78 17.54 15.41 17.51 15.91 17.43C16.47 17.35 17.62 16.73 17.86 16.06C18.1 15.38 18.1 14.8 18.03 14.68C17.96 14.56 17.76 14.49 17.47 14.39Z"/>
+        </svg>
+        <span class="hidden sm:block absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-slate-900/90 backdrop-blur-sm text-white text-xs font-semibold rounded-xl shadow-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+          WhatsApp Us
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Global Admin Notification Toast Container -->
+  <div id="admin-toast" class="fixed bottom-6 right-6 z-[9999] pointer-events-none transition-all duration-300 transform opacity-0 translate-y-3"></div>
+
+  <!-- Scripts with cache buster -->
+  <script src="js/data.js?v=5.2"></script>
+  <script src="js/app.js?v=5.2"></script>
+</body>
+</html>
